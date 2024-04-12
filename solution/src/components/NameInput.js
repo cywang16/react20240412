@@ -1,8 +1,8 @@
 
 export const NameInput = params => {
-  const updateName = async e => {
+  const updateName = e => {
     params.setName(e.target.value)
-    await params.checkName(e.target.value)
+    params.checkName(e.target.value)
   }
 
   return (<div class="flex">

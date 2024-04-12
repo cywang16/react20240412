@@ -25,16 +25,19 @@ function App() {
     clearInput()
   }
 
-  const checkAccountName = async () => {
-    if (await isNameValid(AccountName)) {
-      setAccountNameError("")
-      let findName = accounts.filter(n => { return n.name.localeCompare(AccountName) === 0 })
-      if (findName.length > 0) {
-        setAccountNameError("this name has been taken")
+  const checkAccountName = (inputName) => {
+    isNameValid(inputName)
+    .then(isValid => {
+      if (isValid) {
+        setAccountNameError("")
+        let findName = accounts.filter(n => { return n.name.localeCompare(inputName) === 0 })
+        if (findName.length > 0) {
+          setAccountNameError("this name has been taken")
+        }
+      } else {
+        setAccountNameError("invalid name")
       }
-    } else {
-      setAccountNameError("invalid name")
-    }
+    })
   }
 
   return (

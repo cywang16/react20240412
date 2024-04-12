@@ -1,8 +1,17 @@
+import { useEffect, useState } from 'react'
 import { getLocations } from "../mock-api/apis"
 
-const locations = await getLocations()
 
 export const LocationSelect = params => {
+  const [locations, setLocations] = useState([])
+  useEffect(() => {
+    async function fetchData() {
+      const locationData = await getLocations()
+      setLocations(locationData)
+    }
+    fetchData()
+  }, [locations])
+
   return (<div class="flex">
     <label class="block mx-8 text-m font-medium text-gray-900 dark:text-white">Location</label>
     <select name="location"
